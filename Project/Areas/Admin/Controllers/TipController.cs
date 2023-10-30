@@ -4,7 +4,8 @@ using Project.Models;
 namespace Project.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class TipController :Controller
+    [Route("Admin/[controller]")]
+    public class TipController : Controller
     {
         private readonly DataContext _dataContext;
         public TipController(DataContext dataContext)
@@ -16,6 +17,8 @@ namespace Project.Areas.Admin.Controllers
             var query = _dataContext.TravelTipss.OrderBy(m => m.TipID).ToList();
             return View(query);
         }
+        [HttpGet]
+        [Route("Delete/{id:int}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || id == 0)
@@ -31,6 +34,7 @@ namespace Project.Areas.Admin.Controllers
             return View(m);
         }
         [HttpPost]
+        [Route("Delete")]
         public IActionResult Delete(int id)
         {
             var delTip = _dataContext.TravelTipss.Find(id);
@@ -43,6 +47,8 @@ namespace Project.Areas.Admin.Controllers
             _dataContext.SaveChanges();
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        [Route("Create")]
         public IActionResult Create()
         {
             var query = (from i in _dataContext.TravelTipss

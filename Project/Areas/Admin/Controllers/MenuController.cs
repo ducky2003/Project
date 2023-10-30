@@ -5,6 +5,7 @@ using Project.Models;
 namespace Project.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Route("Admin/[controller]")]
     public class MenuController : Controller
     {
         private readonly DataContext _dataContext;
@@ -17,6 +18,8 @@ namespace Project.Areas.Admin.Controllers
             var query = _dataContext.Menus.OrderBy(m => m.MenuID).ToList();
             return View(query);
         }
+        [HttpGet]
+        [Route("Delete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || id == 0)
@@ -32,6 +35,7 @@ namespace Project.Areas.Admin.Controllers
             return View(m);
         }
         [HttpPost]
+        [Route("Delete")]
         public IActionResult Delete(int id)
         {
             var delMenu = _dataContext.Menus.Find(id);
@@ -44,6 +48,8 @@ namespace Project.Areas.Admin.Controllers
             _dataContext.SaveChanges();
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        [Route("Create")]
         public IActionResult Create()
         {
             var query = (from i in _dataContext.Menus
@@ -72,12 +78,14 @@ namespace Project.Areas.Admin.Controllers
             }
             return View(mn);
         }
+        [HttpGet]
+        [Route("Edit/{id:int}")]
         public IActionResult Edit(int? id)
         {
-            if(id == null || id == 0)
+            if (id == null || id == 0)
                 return NotFound();
             var sm = _dataContext.Menus.Find(id);
-            if(sm  == null)
+            if (sm == null)
                 return NotFound();
             var query = (from i in _dataContext.Menus
                          select new SelectListItem()
@@ -90,7 +98,7 @@ namespace Project.Areas.Admin.Controllers
                 Text = "---Select---",
                 Value = string.Empty
             });
-            ViewBag.query = query; 
+            ViewBag.query = query;
             return View(sm);
         }
         [HttpPost]
