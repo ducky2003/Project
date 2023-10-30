@@ -1,0 +1,33 @@
+﻿@using Project.Models
+@model Project.Models.TravelTip
+@{
+    var tip = Model;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2>Xác nhận xóa?</h2>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <lable asp-for="@tip.TipID">TipID</lable>
+            <input value="@tip.TipID" type="text" class=" form-control mb-3" asp-for="TipID" disabled>
+
+        </div>
+        <div class="form-group col-md-6">
+            <lable asp-for="TipTitle">Tiptitle</lable>
+            <input value="@tip.TipTitle" type="text" class=" form-control mb-3" asp-for="TipTitle" disabled>
+
+        </div>
+    </div>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="TipID" />
+        <a class="btn btn-lg btn-warning p-2 mr-5"
+           href="javascrip:history.back()">
+            <i class="bi bi-arrow-left-circle"></i> Quay lại
+        </a>
+        <button type="submit" class="btn btn-lg btn-danger p-2">
+            <i class="bi bi-trash-fill"></i> Xóa
+        </button>
+    </form>
+</main>

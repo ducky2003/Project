@@ -1,0 +1,65 @@
+﻿@model Project.Models.Menu
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class=" main">
+    <div class="pagetitle">
+        <h2>Sửa Menu</h2>
+    </div>
+    <div class="container shadow p-5">
+        <div class="row pb-2">
+            <h2>Sửa Menu</h2>
+        </div>
+        <form asp-action="Edit" method="post" asp-controller="Menu" asp-area="Admin">
+            <div asp-validation-summary="All"></div>
+            @Html.AntiForgeryToken()
+            <div class="form-row">
+                <input type="Text" class="form-control mb-3" asp-for="MenuID" type ="hidden">
+                <div class="form-group col-md-6">
+                    <label asp-for="MenuName">MenuName</label>
+                    <input type="text" class="form-control mb-3" asp-for="MenuName" placeholder="Insert Menu Name">
+                    <span asp-validation-for="MenuName" class="alert-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <lable asp-for="Levels">Levels</lable>
+                    <select asp-for="Levels" class="form-select" id="Levels">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="alert-danger" asp-validation-summary="ModelOnly"></div>
+                    <label asp-for="ParentID">ParentID </label>
+                    <select asp-for="ParentID" class="form-control"
+                            asp-items="@(new SelectList(ViewBag.query,"Value","Text"))">
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <lable asp-for="Link">Link</lable>
+                    <input type="text" class="form-control mb-3" asp-for="Link" placeholder="Insert Link">
+                    <span asp-validation-for="Link" class="alert-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <lable asp-for="MenuOrder">MenuOrder</lable>
+                    <input type="text" class="form-control mb-3" asp-for="MenuOrder" placeholder="Insert MenuOrder">
+                    <span asp-validation-for="MenuOrder" class="alert-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <lable asp-for="Position">Position</lable>
+                    <input type="text" class="form-control mb-3" asp-for="Position" placeholder="Insert Position">
+                    <span asp-validation-for="Position" class="alert-danger"></span>
+                </div>
+                <div class="form-group mt-5 mb-5">
+                    <lable>
+                        @Html.CheckBox("IsActive", Model.IsActive)
+                        Show
+                    </lable>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary p-2"><i class="bi bi-file-plus-fill"></i>Save</button>
+            <a asp-controller="Menu" asp-action="Index" class=" btn btn-lg btn-warning p-2">Back</a>
+        </form>
+    </div>
+</main>

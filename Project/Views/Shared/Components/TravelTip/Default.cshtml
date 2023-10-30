@@ -1,0 +1,28 @@
+﻿@model IList<TravelTip>
+<!-- Tips Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">DU LỊCH VIỆT NAM</h6>
+            <h1 class="mb-5">Các lời khuyên khi du lịch</h1>
+        </div>
+        <div class="row">
+            @foreach(var item in Model)
+            {
+                <div class="col-lg-6 col-md-6 mb-4 wow fadeInUp btn" data-wow-delay="0.7s">
+                    <div class="service-item service-item rounded pt-3 text-center mb-2 py-5 px-4">
+                        <i class="fa fa-2x fa-route mx-auto mb-4 text-primary"></i>
+                        <h5 class="mb-2">@item.TipTitle</h5>
+                        <p class="m-0">@item.TipContent</p>
+                    </div>
+                </div>
+               
+            }
+        </div>
+        <a type="button" class="btn btn-primary float-end" href="/Admin/Tip">
+            <i class="bi bi bi-pencil me-1"></i> Tùy chỉnh
+        </a>
+        
+    </div>
+</div>
+<!-- Tips End -->

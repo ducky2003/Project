@@ -1,0 +1,41 @@
+﻿@using Project.Areas.Admin.Models
+@model IList<AdminMenu>
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link " href="index.html">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+        @foreach(var item in Model.Where(m=>m.ItemLevel == 1).OrderBy(n => n.ItemOrder))
+        {   
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/Admin/@item.ControllerName/@item.ActionName">
+                    <i class="@item.Icon"></i><span>@item.ItemName</span>
+                </a>
+                
+            </li>
+            @*@<ul id="@item.IdName" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                @foreach (var sm in Smenu)
+                {
+                    <li>
+                        <a href="/Admin/@sm.ControllerName/@sm.ActionName">
+                            <i class="bi bi-circle"></i><span>@sm.ItemName</span>
+                        </a>
+                      
+                    </li>
+                }
+            </ul>*@
+            
+        }
+
+        <li class="nav-heading">Pages</li>
+
+        
+    </ul>
+
+</aside><!-- End Sidebar-->

@@ -1,0 +1,63 @@
+﻿@using Project.Models
+@model IList<TravelTip>
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2>Travel Tips</h2>
+    </div>
+    <p>
+        <a type="button" class="btn btn-success" href="/Admin/Tip/Create">
+            <i class="bi bi-file-earmark-text me-1"></i> Thêm
+        </a>
+    </p>
+    <section class="section dashboard">
+        <div class="row">
+
+            <!-- Left side columns -->
+            <div class="row">
+                <!-- Recent Sales -->
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body mt-4">
+                            <table class="table table-borderless datatable">
+                                <thead>
+                                    <tr>
+                                        <th class="col-1 text-center">#</th>
+                                        <th class="col-3 text-center">Tiêu đề</th>                                       
+                                        <th class="col-2 text-center">Hiện/Ẩn</th>
+                                        <th class="col-2 text-center">Chức năng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <th class="text-center" scope="row">@item.TipID</th>
+                                            <td class="text-center">
+                                                <a href="#" class="text-primary text-center">@item.TipTitle</a>
+                                            </td>
+                                            <td class="text-center">@item.IsActive</td>
+                                            <td class="text-center">
+                                                <a href="/Admin/Tip/Edit/@item.TipID" class="btn btn-primary btn-sm"
+                                                   title="Sửa nội dung">
+                                                    <i class=" bi bi-pencil"></i>
+                                                </a>
+                                                <a href="/Admin/Tip/Delete/@item.TipID" class="btn btn-danger btn-sm"
+                                                   title="Xóa">
+                                                    <i class="bi bi-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div><!-- End Recent Sales -->
+            </div>
+        </div>
+    </section>
+</main>

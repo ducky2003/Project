@@ -1,0 +1,41 @@
+﻿@model Project.Models.TravelTip
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class=" main">
+    <div class="pagetitle">
+        <h2>Thêm nội dung "TravelTips"</h2>
+    </div>
+    <div class="container shadow p-5">
+        <div class="row pb-2">
+            <h2>Thêm mới</h2>
+        </div>
+        <form asp-action="Create" asp-controller="Tip" asp-area="Admin" method="post">
+            <div asp-validation-summary="All"></div>
+            @Html.AntiForgeryToken()
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="TipTitle">TipTitle</label>
+                    <input type="text" class="form-control mb-3" asp-for="TipTitle" placeholder="Insert Tip Title">
+                    <span asp-validation-for="TipTitle" class="alert-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">                   
+                <div class="form-group col-md-6">
+                    <lable asp-for="TipContent">TipContent</lable>
+                    @*<input type="text" class="form-control mb-3" asp-for="TipContent" placeholder="Insert TipContent">*@
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" asp-for="TipContent" placeholder="Insert TipContent"></textarea>
+                    <span asp-validation-for="TipContent" class="alert-danger"></span>
+                </div>               
+                <div class="form-group mt-5 mb-5">
+                    <lable>
+                        @Html.CheckBox("IsActive", false)
+                        Show
+                    </lable>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary p-2"><i class="bi bi-file-plus-fill"></i>Save</button>
+            <a asp-controller="Tip" asp-action="Index" class=" btn btn-lg btn-warning p-2">Back</a>
+        </form>
+    </div>
+</main>

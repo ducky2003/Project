@@ -1,0 +1,68 @@
+﻿@using Project.Models
+@model IList<Menu>
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2>Danh sach menu</h2>
+    </div>
+    <p>
+        <a type="button" class="btn btn-success" href="/Admin/Menu/Create">
+            <i class="bi bi-file-earmark-text me-1"></i> Thêm Menu
+        </a>
+    </p>
+    <section class="section dashboard">
+        <div class="row">
+
+            <!-- Left side columns -->
+            <div class="row">
+                <!-- Recent Sales -->
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body mt-4">
+                            <table class="table table-borderless datatable">
+                                <thead>
+                                    <tr>
+                                        <th class="col-1 text-center">#</th>
+                                        <th class="col-3 text-center">Tiêu đề</th>
+                                        <th class="col-2 text-center">Mức</th>
+                                        <th class="col-2 text-center">Menu cha</th>
+                                        <th class="col-1 text-center">Thứ tự</th>
+                                        <th class="col-2 text-center">Hiện/Ẩn</th>
+                                        <th class="col-2 text-center">Chức năng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <th class="text-center" scope="row">@item.MenuID</th>
+                                            <td><a href="#" class="text-primary">@item.MenuName</a>
+                                            </td>
+                                            <td class="text-center">@item.Levels</td>
+                                            <td class="text-center">@item.ParentID</td>
+                                            <td class="text-center">@item.MenuOrder</td>
+                                            <td class="text-center">@item.IsActive</td>
+                                            <td class="text-center">
+                                                <a href="/Admin/Menu/Edit/@item.MenuID" class="btn btn-primary btn-sm"
+                                                    title="Sửa nội dung">
+                                                    <i class=" bi bi-pencil"></i>
+                                                </a>
+                                                <a href="/Admin/Menu/Delete/@item.MenuID" class="btn btn-danger btn-sm"
+                                                    title="Xóa">
+                                                    <i class="bi bi-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div><!-- End Recent Sales -->
+            </div>
+        </div>
+    </section>
+</main>
