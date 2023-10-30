@@ -19,7 +19,7 @@ namespace Project.Areas.Admin.Controllers
             return View(query);
         }
         [HttpGet]
-        [Route("Delete")]
+        [Route("Delete/{id:int}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || id == 0)
@@ -35,7 +35,7 @@ namespace Project.Areas.Admin.Controllers
             return View(m);
         }
         [HttpPost]
-        [Route("Delete")]
+        [Route("Delete/{id:int}")]
         public IActionResult Delete(int id)
         {
             var delMenu = _dataContext.Menus.Find(id);
