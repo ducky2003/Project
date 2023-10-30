@@ -102,12 +102,13 @@ namespace Project.Areas.Admin.Controllers
             return View(sm);
         }
         [HttpPost]
-        [Route("Edit")]
+        [Route("Edit/{id:int}")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Menu mn)
         {
             if (ModelState.IsValid)
             {
-                await _dataContext.Menus.AddAsync(mn);
+                _dataContext.Menus.Update(mn);
                 await _dataContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
